@@ -1,5 +1,10 @@
 #pragma once
 #include "number.h"
+#include <iostream>
+#include <sstream>
+#include <string>
+
+using namespace std;
 
 class Array
 {
@@ -9,7 +14,7 @@ private:
 	number* array = nullptr;
 
 public:
-	Array(int valueSize = 0)
+	Array(int valueSize)
 	{
 		size = valueSize;
 		capacity = valueSize;
@@ -20,8 +25,21 @@ public:
 		delete[] array;
 	};
 	
-	
+	void fill(string& input) 
+	{
+		stringstream ss(input);
+		number value;
+		while (ss >> value) {
+			add(value);
+		}
+	}
 
+	void show() 
+	{
+		for (int i = 0; i < size; i++) {
+			cout << (*(array + i)) << ' ';
+		}
+	}
 	void resize(bool isExpand)
 	{
 		number* tmp = array;
@@ -50,9 +68,8 @@ public:
 
 	void remove()
 	{
-		delete (array + size - 1);
 		size--;
-		if (size <= capacity / 2) {
+		if (size <= capacity / 2 && capacity > 1) {
 			resize(false);
 		}
 	}

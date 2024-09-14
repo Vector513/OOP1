@@ -4,11 +4,8 @@
 class Application
 {
 private:
-    //Array array;
+    Array array;
 public:
-    //Application(int size) : array(size) {}
-    //~Application
-    /*
     void run()
     {
         char separator[] = "------------------------------------------------------------------------------------------------------------------------";
@@ -27,20 +24,11 @@ public:
             }
 
             else if (command == 's') {
-                //array.show();
+                array.show();
             }
 
             else if (command == '1') {
-                string input;
-                cout << "Введите элементы списка: ";
-                cin.get();
-                getline(cin, input);
-                //array.add(5);
-                //array.add(6);
-                //array.add(7);
-                //array.add(8);
-               
-                //array.fill(input);
+                fill();
             }
             else if (command == '2') {
                 cout << commands;
@@ -49,7 +37,11 @@ public:
                 cout << commands;
             }
             else if (command == '4') {
-                cout << commands;
+                cout << "Введите новую размерность текущего массива: ";
+                int newCapacity;
+                cin >> newCapacity;
+                resize(newCapacity);
+                cout << "Размер массива был успешно изменён на " << newCapacity;
             }
             else if (command == '5') {
                 cout << commands;
@@ -64,9 +56,17 @@ public:
         } while (true);
     }
 
-    */
-    /*Application(const Array& array)
-        : array(array)
-    {*/
+    void fill() 
+    {
+        string input;
+        cout << "Введите элементы списка: ";
+        cin.get();
+        getline(cin, input);
+        array.fill(input);
+    }
+
+    void resize(int newCapacity) {
+        array.resize(newCapacity);
+    }
     
 };
